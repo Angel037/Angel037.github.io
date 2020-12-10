@@ -1,0 +1,117 @@
+<script>
+const playerX = {
+  simbol: "X",
+  color: "blue"
+};
+
+const playerO = {
+  simbol: "O",
+  color: "red"
+};
+
+const players = [playerX, playerO];
+
+const colors = ["black", "green"];
+
+var turn = 0;
+var buttonReset = document.querySelector("button");
+var buttons = document.querySelectorAll(".buttons");
+
+buttonReset.addEventListener("click", restartGame);
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("mouseover", overSquare);
+  buttons[i].addEventListener("mouseout", outSquare);
+  buttons[i].addEventListener("click", changeSquare);
+  buttons[i].textContent = "";
+}
+
+function overSquare(e) {
+  if (e.target.textContent == "" ) {
+  e.target.style.backgroundColor = colors[1];
+  }
+}
+function outSquare(e) {
+  if (e.target.textContent == "" ) {
+    e.target.style.backgroundColor = colors[0];
+  }
+}
+function changeSquare() {
+  if (this.textContent == "") {
+    console.log(turn);
+  this.style.backgroundColor = players[turn].color;
+  this.textContent = players[turn].simbol;
+  turn = turn==0?1:0;
+    checkWinnner()
+    }
+}
+function checkWinnner() {
+  
+  }
+function restartGame() {
+  turn = 0;
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].style.backgroundColor = colors[0];
+    buttons[i].textContent = "";
+  }
+}
+
+</script>
+
+<style>
+table {
+  width: 450px;
+  height: 450px;
+  margin: auto;
+}
+
+td {
+  width: 150px;
+  height: 150px;
+  font-size: 80px;
+  text-align: center;
+  background-color: black;
+}
+
+div{
+  width:450px;
+  margin:auto;
+}
+
+button{
+  width:450px;
+}
+</style>
+
+<table>
+  <tbody>
+    <tr>
+      <td class="buttons">
+      </td>
+      <td class="buttons">
+      </td>
+      <td class="buttons">
+      </td>
+    </tr>
+
+    <tr>
+      <td class="buttons">
+      </td>
+      <td class="buttons">
+      </td>
+      <td class="buttons">
+      </td>
+    </tr>
+    <tr>
+      <td class="buttons">
+      </td>
+      <td class="buttons">
+      </td>
+      <td class="buttons">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <button>reset</button>
+</div>
